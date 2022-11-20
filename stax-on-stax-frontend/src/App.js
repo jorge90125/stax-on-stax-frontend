@@ -1,10 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
 import React, {useState, useEffect} from 'react'
 import {Route, Routes, useNavigate} from 'react-router-dom'
 import Nav from './components/Nav'
 import SignIn from './components/SignIn'
 import RecordContainer from './components/RecordContainer'
+import Register from './components/Register'
 
 let baseURL = 'http://localhost:8000'
 
@@ -52,6 +52,32 @@ const App = () => {
     }
   }
 
+  const register = async (e) => {
+    e.preventDefault()
+    const registerForm = {
+      username: e.target.username.value,
+      password: e.target.password.value,
+      email: e.target.email.value
+    }
+    try {
+      const res = await fetch(`${baseURL}/users/register`, {
+        method: 'POST',
+        body: JSON.stringify(registerForm),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include'
+      })
+      if (res.status === 201) {
+        handleGetRecords()
+        navigate('records')
+      }
+    }
+    catch (err) {
+      console.log(err)
+    }
+  }
+
   useEffect(() => {
     handleGetRecords()
     console.log('Component did mount.')
@@ -63,6 +89,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<SignIn login={login}/>}/>
         <Route path='/records' element={<RecordContainer records={records}/>}/>
+        <Route path='/register' element={<Register register={register} />}/>
       </Routes>
     </div>
   );
