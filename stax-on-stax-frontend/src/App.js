@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import React, {useState, useEffect} from 'react'
 import {Route, Routes, useNavigate} from 'react-router-dom'
+import Nav from './components/Nav'
 import SignIn from './components/SignIn'
 import RecordContainer from './components/RecordContainer'
 
@@ -58,6 +59,7 @@ const App = () => {
 
   return (
     <div>
+      <Nav />
       <Routes>
         <Route path='/' element={<SignIn login={login}/>}/>
         <Route path='/records' element={<RecordContainer records={records}/>}/>
