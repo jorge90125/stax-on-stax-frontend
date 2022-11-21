@@ -133,6 +133,21 @@ const App = () => {
     }
   }
 
+  const deleteRecord = async (id) => {
+    try {
+      fetch(`${baseURL}/records/${id}`, {
+        method: 'DELETE',
+        credentials: 'include'
+      }).then(() => {
+        navigate('records')
+        handleGetRecords()
+    })
+    }
+    catch (err) {
+      console.log(err)
+    }
+  }
+
   useEffect(() => {
     handleGetRecords()
     console.log('Component did mount.')
@@ -146,7 +161,7 @@ const App = () => {
         <Route path='/records' element={<RecordContainer records={records} showRecord={showRecord}/>}/>
         <Route path='/register' element={<Register register={register}/>}/>
         <Route path='/newform' element={<NewForm addRecord={addRecord}/>}/>
-        <Route path='/showrecord' element={<ShowRecord record={singleRecord} navigate={navigate}/>}/>
+        <Route path='/showrecord' element={<ShowRecord record={singleRecord} navigate={navigate} deleteRecord={deleteRecord}/>}/>
       </Routes>
     </div>
   );
