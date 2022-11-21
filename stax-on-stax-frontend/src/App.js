@@ -6,13 +6,36 @@ import SignIn from './components/SignIn'
 import RecordContainer from './components/RecordContainer'
 import NewForm from './components/NewForm'
 import Register from './components/Register'
+import ShowRecord from './components/ShowRecord'
 
 let baseURL = 'http://localhost:8000'
 
 const App = () => {
   const [records, getRecords] = useState([])
+  const [singleRecord, getSingleRecord] = useState([])
 
   const navigate = useNavigate()
+
+  const showRecord = async (id) => {
+    console.log(id)
+    try {
+      fetch(`${baseURL}/records/${id}`, {
+        method: 'GET',
+        credentials: 'include'
+      })
+      .then(res => {
+        return res.json()
+      }).then(data => {
+        console.log(data.data)
+        getSingleRecord(data.data)
+      }).then(
+        navigate('showrecord')
+      )
+    }
+    catch (err) {
+      console.log(err)
+    }
+  }
 
   const handleGetRecords = () => {
     fetch(`${baseURL}/records/`, {
@@ -120,9 +143,10 @@ const App = () => {
       <Nav />
       <Routes>
         <Route path='/' element={<SignIn login={login}/>}/>
-        <Route path='/records' element={<RecordContainer records={records}/>}/>
-        <Route path='/register' element={<Register register={register} />}/>
-        <Route path='/newform' element={<NewForm addRecord={addRecord} />}/>
+        <Route path='/records' element={<RecordContainer records={records} showRecord={showRecord}/>}/>
+        <Route path='/register' element={<Register register={register}/>}/>
+        <Route path='/newform' element={<NewForm addRecord={addRecord}/>}/>
+        <Route path='/showrecord' element={<ShowRecord record={singleRecord} navigate={navigate}/>}/>
       </Routes>
     </div>
   );
