@@ -102,6 +102,21 @@ const App = () => {
     }
   }
 
+  const logout = async () => {
+    try {
+      fetch(`${baseURL}/users/logout`, {
+        method: 'GET',
+        credentials: 'include'
+      }).then(() => {
+        navigate('/')
+        getRecords([])
+      })
+    }
+    catch (err) {
+      console.log(err)
+    }
+  }
+
   const addRecord = async (e) => {
     e.preventDefault()
     const createForm = {
@@ -155,7 +170,7 @@ const App = () => {
 
   return (
     <div>
-      <Nav />
+      <Nav logout={logout} />
       <Routes>
         <Route path='/' element={<SignIn login={login}/>}/>
         <Route path='/records' element={<RecordContainer records={records} showRecord={showRecord}/>}/>
