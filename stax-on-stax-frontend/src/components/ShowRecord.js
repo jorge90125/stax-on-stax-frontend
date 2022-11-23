@@ -26,6 +26,7 @@ const ShowRecord = (props) =>{
                 <div>Country:</div><div>{props.record.country}</div>
             </div>
             <button onClick={() => props.deleteRecord(props.record.id)}>Delete Record</button>
+            <button onClick={() => props.navigate('editform')}>Edit Record</button>
             <button onClick={() => props.navigate('records')}>Back to Records</button>
         </div>
     )

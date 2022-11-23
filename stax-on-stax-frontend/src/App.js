@@ -5,6 +5,7 @@ import Nav from './components/Nav'
 import SignIn from './components/SignIn'
 import RecordContainer from './components/RecordContainer'
 import NewForm from './components/NewForm'
+import EditForm from './components/EditForm'
 import Register from './components/Register'
 import ShowRecord from './components/ShowRecord'
 
@@ -50,7 +51,6 @@ const App = () => {
   }
 
   const login = async (e) => {
-    console.log(e.target.email.value)
     e.preventDefault()
     const loginForm = {
       email: e.target.email.value,
@@ -66,7 +66,6 @@ const App = () => {
         credentials: 'include'
       })
       if (res.status === 200) {
-        console.log(res.status)
         handleGetRecords()
         navigate('records')
       }
@@ -148,6 +147,37 @@ const App = () => {
     }
   }
 
+  const editRecord = async (recordInfo) => {
+    console.log(recordInfo)
+    const editForm = {
+      name: recordInfo.name,
+      artist: recordInfo.artist,
+      artwork_url: recordInfo.artwork_url,
+      release_year: recordInfo.release_year,
+      pressing_year: recordInfo.pressing_year,
+      genre: recordInfo.genre,
+      record_label: recordInfo.record_label,
+      catalog_num: recordInfo.catalog_num,
+      country: recordInfo.country
+    }
+    try {
+      await fetch(`${baseURL}/records/${recordInfo.id}`, {
+        method: 'PUT',
+        body: JSON.stringify(editForm),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include'
+      }).then(() => {
+        handleGetRecords()
+        showRecord(recordInfo.id)
+      })
+    }
+    catch (err) {
+      console.log(err)
+    }
+  }
+
   const deleteRecord = async (id) => {
     try {
       fetch(`${baseURL}/records/${id}`, {
@@ -177,6 +207,7 @@ const App = () => {
         <Route path='/register' element={<Register register={register}/>}/>
         <Route path='/newform' element={<NewForm addRecord={addRecord}/>}/>
         <Route path='/showrecord' element={<ShowRecord record={singleRecord} navigate={navigate} deleteRecord={deleteRecord}/>}/>
+        <Route path='/editform' element={<EditForm navigate={navigate} record={singleRecord} editRecord={editRecord} />}/>
       </Routes>
     </div>
   );
