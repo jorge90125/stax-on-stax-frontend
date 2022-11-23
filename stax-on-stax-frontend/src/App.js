@@ -8,12 +8,14 @@ import NewForm from './components/NewForm'
 import EditForm from './components/EditForm'
 import Register from './components/Register'
 import ShowRecord from './components/ShowRecord'
+import AllUsers from './components/AllUsers'
 
 let baseURL = 'http://localhost:8000'
 
 const App = () => {
   const [records, getRecords] = useState([])
   const [singleRecord, getSingleRecord] = useState([])
+  const [allUsers, getAllUsers] = useState([])
 
   const navigate = useNavigate()
 
@@ -47,6 +49,17 @@ const App = () => {
     }).then(data => {
       console.log(data.data)
       getRecords(data.data)
+    })
+  }
+
+  const handleGetUsers = () => {
+    fetch(`${baseURL}/users/`, {
+      credentials: 'include'
+    }).then(res => {
+      return res.json()
+    }).then(data => {
+      console.log(data.data)
+      getAllUsers(data.data)
     })
   }
 
@@ -195,6 +208,7 @@ const App = () => {
 
   useEffect(() => {
     handleGetRecords()
+    handleGetUsers()
     console.log('Component did mount.')
   }, [])
 
@@ -208,6 +222,7 @@ const App = () => {
         <Route path='/newform' element={<NewForm addRecord={addRecord}/>}/>
         <Route path='/showrecord' element={<ShowRecord record={singleRecord} navigate={navigate} deleteRecord={deleteRecord}/>}/>
         <Route path='/editform' element={<EditForm navigate={navigate} record={singleRecord} editRecord={editRecord} />}/>
+        <Route path='/allusers' element={<AllUsers allUsers={allUsers} />}/>
       </Routes>
     </div>
   );

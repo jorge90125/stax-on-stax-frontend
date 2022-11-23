@@ -7,6 +7,7 @@ const Nav = (props) => {
             <Link to='/'>SIGN IN</Link>
             <NavLink to='/records'>RECORDS</NavLink>
             <NavLink to='/newform'>ADD RECORD</NavLink>
+            <NavLink to='/allusers'>ALL USERS</NavLink>
             <NavLink to='/register'>REGISTER</NavLink>
             <Link to='/' onClick={props.logout}>LOGOUT</Link>
         </nav>
