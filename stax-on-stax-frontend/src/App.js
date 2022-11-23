@@ -9,6 +9,7 @@ import EditForm from './components/EditForm'
 import Register from './components/Register'
 import ShowRecord from './components/ShowRecord'
 import AllUsers from './components/AllUsers'
+import OtherUserRecords from './components/OtherUserRecords'
 
 let baseURL = 'http://localhost:8000'
 
@@ -16,6 +17,7 @@ const App = () => {
   const [records, getRecords] = useState([])
   const [singleRecord, getSingleRecord] = useState([])
   const [allUsers, getAllUsers] = useState([])
+  const [otherUserRecords, getOtherUserRecords] = useState([])
 
   const navigate = useNavigate()
 
@@ -58,8 +60,20 @@ const App = () => {
     }).then(res => {
       return res.json()
     }).then(data => {
-      console.log(data.data)
       getAllUsers(data.data)
+    })
+  }
+
+  const handleGetUserRecords = async (user) => {
+    fetch(`${baseURL}/users/${user}/records`, {
+      credentials: 'include'
+    }).then(res => {
+      return res.json()
+    }).then(data => {
+      console.log(data.data)
+      getOtherUserRecords(data.data)
+    }).then(() => {
+      navigate('otherusercollection')
     })
   }
 
@@ -222,7 +236,8 @@ const App = () => {
         <Route path='/newform' element={<NewForm addRecord={addRecord}/>}/>
         <Route path='/showrecord' element={<ShowRecord record={singleRecord} navigate={navigate} deleteRecord={deleteRecord}/>}/>
         <Route path='/editform' element={<EditForm navigate={navigate} record={singleRecord} editRecord={editRecord} />}/>
-        <Route path='/allusers' element={<AllUsers allUsers={allUsers} />}/>
+        <Route path='/allusers' element={<AllUsers allUsers={allUsers} getOtherUserRecords={handleGetUserRecords} />}/>
+        <Route path='/otherusercollection' element={<OtherUserRecords records={otherUserRecords} navigate={navigate} />}/>
       </Routes>
     </div>
   );

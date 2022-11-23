@@ -4,7 +4,7 @@ const AllUsers = (props) => {
             <h1>All Users</h1>
             {props.allUsers.map((user) => {
                 return(
-                    <h2>{user.username}</h2>
+                    <h2 onClick={() => props.getOtherUserRecords(user.id)}>{user.username}</h2>
                 )
             })}
         </div>
