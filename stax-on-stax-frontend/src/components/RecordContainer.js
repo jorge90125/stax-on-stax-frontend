@@ -1,19 +1,31 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 
 const RecordContainer = (props) => {
     let sortedRecords = props.records
 
-    const [sortedField, setSortedField] = useState('artist')
+    const [sortConfig, setSortConfig] = useState('artist')
 
     sortedRecords.sort((a, b) => {
-        if (a[sortedField] < b[sortedField]) {
-            return -1
+        if (a[sortConfig.key] < b[sortConfig.key]) {
+        return sortConfig.direction === 'ascending' ? -1 : 1
         }
-        if (a[sortedField] > b[sortedField]) {
-            return 1
+        if (a[sortConfig.key] > b[sortConfig.key]) {
+        return sortConfig.direction === 'ascending' ? 1 : -1
         }
         return 0
     })
+
+    const requestSort = key => {
+        let direction = 'ascending'
+        if (sortConfig.key === key && sortConfig.direction === 'ascending') {
+          direction = 'descending'
+        }
+        setSortConfig({ key, direction })
+    }
+
+    useEffect(() => {
+        requestSort('artist')
+    }, [])
 
     return(
         <div>
@@ -21,10 +33,10 @@ const RecordContainer = (props) => {
             <table>
                 <tr>
                     <th>Artwork</th>
-                    <th>Artist<button onClick={() => setSortedField('artist')}>^</button></th>
-                    <th>Album<button onClick={() => setSortedField('name')}>^</button></th>
-                    <th>Year<button onClick={() => setSortedField('release_year')}>^</button></th>
-                    <th>Genre<button onClick={() => setSortedField('genre')}>^</button></th>
+                    <th>Artist<button onClick={() => requestSort('artist')}>^</button></th>
+                    <th>Album<button onClick={() => requestSort('name')}>^</button></th>
+                    <th>Year<button onClick={() => requestSort('release_year')}>^</button></th>
+                    <th>Genre<button onClick={() => requestSort('genre')}>^</button></th>
                 </tr>
                 {sortedRecords.map((record) => {
                     return(
