@@ -41,7 +41,7 @@ const RecordContainer = (props) => {
                 {sortedRecords.map((record) => {
                     return(
                         <tr onClick={() => props.showRecord(record.id)}>
-                            <td>Art Here</td>
+                            <td><img id='containerImage' src={record.artwork_url} alt={record.name} /></td>
                             <td>{record.artist}</td>
                             <td>{record.name}</td>
                             <td>{record.release_year}</td>

@@ -5,8 +5,15 @@ const OtherUserRecords = (props) => {
             {props.records.map((record) => {
                 return(
                     <div>
-                        <h2>{record.name}</h2>
-                        <h2>{record.artist}</h2>
+                        <div>
+                            <img src={record.artwork_url} alt={record.name} />
+                        </div>
+                        <div>
+                            <div>Album Name:</div><div>{record.name}</div>
+                        </div>
+                        <div>
+                            <div>Artist:</div><div>{record.artist}</div>
+                        </div>
                     </div>
                 )
             })}

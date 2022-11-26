@@ -2,6 +2,9 @@ const ShowRecord = (props) =>{
     return(
         <div>
             <div>
+                <img src={props.record.artwork_url} alt={props.record.name} />
+            </div>
+            <div>
                 <div>Album Name:</div><div>{props.record.name}</div>
             </div>
             <div>
