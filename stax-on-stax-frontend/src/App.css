@@ -1,4 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=PT+Sans+Narrow&display=swap');
+
+h1 {
+  font-family: 'Fredoka One', cursive;
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-bottom: 2px;
+  font-size: 40px;
+  background-color: #18c6d6;
+}
 
 /* NAV BAR */
 
@@ -6,8 +16,28 @@ nav {
   display: flex;
   justify-content: space-evenly;
   padding: 10px 0px;
-  background-color: #d6d6d6;
+  background-color: #afb0b3;
   border-bottom: 4px solid black;
+  border-top: 4px solid black;
+}
+
+#titleDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #dcdee0;
+}
+
+#title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 50px;
+  margin: 1px;
+  background-color: transparent;
+}
+
+hr {
+  border: 2px solid black;
+  width: 30%;
 }
 
 a {
@@ -18,4 +48,45 @@ a {
   border: 2px solid;
   border-radius: 10px;
   font-family: 'PT Sans Narrow', sans-serif;
+}
+
+/* RECORD CONTAINER */
+
+table {
+  width: 100%;
+  border: 3px solid black;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+th {
+  background-color: #afb0b3;
+  height: 40px;
+  font-size: 30px;
+  font-family: 'PT Sans Narrow', sans-serif;
+}
+
+.containerImage {
+  height: 100px;
+  margin-top: 5px;
+}
+
+td {
+  text-align: center;
+  border: 3px solid black;
+  font-size: 30px;
+  font-family: 'PT Sans Narrow', sans-serif;
+}
+
+tr:nth-child(even) {
+  background-color: #dcdee0;
+}
+
+tr:hover {
+  background-color: #18c6d6;
+}
+
+.upDown {
+  background-color: transparent;
+  border: none;
 }

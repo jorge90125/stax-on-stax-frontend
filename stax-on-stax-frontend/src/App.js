@@ -11,6 +11,10 @@ import ShowRecord from './components/ShowRecord'
 import AllUsers from './components/AllUsers'
 import OtherUserRecords from './components/OtherUserRecords'
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faUpDown } from '@fortawesome/free-solid-svg-icons'
+library.add(faUpDown)
+
 let baseURL = 'http://localhost:8000'
 
 const App = () => {

@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const RecordContainer = (props) => {
     let sortedRecords = props.records
@@ -29,19 +30,19 @@ const RecordContainer = (props) => {
 
     return(
         <div>
-            <h1>This is the record container.</h1>
+            <h1>Welcome to your STAX.</h1>
             <table>
                 <tr>
                     <th>Artwork</th>
-                    <th>Artist<button onClick={() => requestSort('artist')}>^</button></th>
-                    <th>Album<button onClick={() => requestSort('name')}>^</button></th>
-                    <th>Year<button onClick={() => requestSort('release_year')}>^</button></th>
-                    <th>Genre<button onClick={() => requestSort('genre')}>^</button></th>
+                    <th>Artist<button onClick={() => requestSort('artist')} class='upDown'><FontAwesomeIcon icon="fa-solid fa-up-down" size="2x"/></button></th>
+                    <th>Album<button onClick={() => requestSort('name')} class='upDown'><FontAwesomeIcon icon="fa-solid fa-up-down" size="2x"/></button></th>
+                    <th>Year<button onClick={() => requestSort('release_year')} class='upDown'><FontAwesomeIcon icon="fa-solid fa-up-down" size="2x"/></button></th>
+                    <th>Genre<button onClick={() => requestSort('genre')} class='upDown'><FontAwesomeIcon icon="fa-solid fa-up-down" size="2x"/></button></th>
                 </tr>
                 {sortedRecords.map((record) => {
                     return(
                         <tr onClick={() => props.showRecord(record.id)}>
-                            <td><img id='containerImage' src={record.artwork_url} alt={record.name} /></td>
+                            <td><img class='containerImage' src={record.artwork_url} alt={record.name} /></td>
                             <td>{record.artist}</td>
                             <td>{record.name}</td>
                             <td>{record.release_year}</td>
