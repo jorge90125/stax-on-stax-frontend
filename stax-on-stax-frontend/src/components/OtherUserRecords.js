@@ -1,4 +1,14 @@
 const OtherUserRecords = (props) => {
+    let sortedRecords = props.records.sort((a,b) => {
+        if (a.artist < b.artist) {
+            return -1
+        }
+        if (a.artist > b.aritst) {
+            return 1
+        }
+        return 0
+    })
+
     return(
         <div>
             <h1>{`${props.records[0].owner.username}'s Collection`}</h1>
@@ -10,7 +20,7 @@ const OtherUserRecords = (props) => {
                     <th>Year</th>
                     <th>Genre</th>
                 </tr>
-                {props.records.map((record) => {
+                {sortedRecords.map((record) => {
                     return(
                         <tr>
                             <td><img class='containerImage' src={record.artwork_url} alt={record.name} /></td>
