@@ -9,7 +9,7 @@ const Register = (props) => {
                 <input type='text' id='email' name='email' />
                 <label htmlFor='name'>Password: </label>
                 <input type='text' id='password' name='password' />
-                <input type='submit' value='Register' />
+                <input class='formBtn' type='submit' value='Register' />
             </form>
         </div>
     )

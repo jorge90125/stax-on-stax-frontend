@@ -1,6 +1,6 @@
 const AllUsers = (props) => {
     return(
-        <div>
+        <div id='allUsersDiv'>
             <h1>All Users</h1>
             {props.allUsers.map((user) => {
                 return(

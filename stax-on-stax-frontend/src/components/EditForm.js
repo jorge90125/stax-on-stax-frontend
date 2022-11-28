@@ -14,7 +14,7 @@ const EditForm = (props) => {
 
     return(
         <div>
-            <form onSubmit={handleSubmit}>
+            <form id='editForm' onSubmit={handleSubmit}>
                 <label htmlFor='name'>Album Name: </label>
                 <input type='text' id='name' name='name' value={record.name} onChange={handleChange} />
                 <label htmlFor='name'>Artist Name: </label>
@@ -33,9 +33,11 @@ const EditForm = (props) => {
                 <input type='text' id='catalog_num' name='catalog_num' value={record.catalog_num} onChange={handleChange} />
                 <label htmlFor='name'>Country: </label>
                 <input type='text' id='country' name='country' value={record.country} onChange={handleChange} />
-                <input type="submit" value="Edit Record" />
             </form>
-            <button onClick={() => props.navigate('showrecord')}>Back to Record Details</button>
+            <div class='editBtnDiv'>
+                <button className='formBtn' type='submit' form='editForm'>Edit Record</button>
+                <button className='formBtn' onClick={() => props.navigate('showrecord')}>Back to Record Details</button>
+            </div>
         </div>
     )
 }

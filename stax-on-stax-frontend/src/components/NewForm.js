@@ -2,7 +2,7 @@ const NewForm = (props) => {
     return(
         <div>
             <h1>Add a new record!</h1>
-            <form onSubmit={props.addRecord}>
+            <form id='addForm' onSubmit={props.addRecord}>
                 <label htmlFor='name'>Album Name: </label>
                 <input type='text' id='name' name='name' />
                 <label htmlFor='name'>Artist Name: </label>
@@ -21,8 +21,10 @@ const NewForm = (props) => {
                 <input type='text' id='catalog_num' name='catalog_num' />
                 <label htmlFor='name'>Country: </label>
                 <input type='text' id='country' name='country' />
-                <input type="submit" value="Add Record" />
             </form>
+            <div class='addBtnDiv'>
+                <button className='formBtn' type='submit' form='addForm'>Add Record</button>
+            </div>
         </div>
     )
 }

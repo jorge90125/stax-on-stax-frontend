@@ -7,7 +7,7 @@ const SignIn = (props) => {
                 <input type='text' id='email' name='email' />
                 <label htmlFor='name'>Password: </label>
                 <input type='text' id='password' name='password' />
-                <input type='submit' value='Log In' />
+                <input class='formBtn' type='submit' value='Log In' />
             </form>
         </div>
     )
