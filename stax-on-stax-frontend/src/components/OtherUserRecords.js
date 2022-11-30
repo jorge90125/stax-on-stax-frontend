@@ -19,6 +19,7 @@ const OtherUserRecords = (props) => {
                     <th>Album</th>
                     <th>Year</th>
                     <th>Genre</th>
+                    <th>Country</th>
                 </tr>
                 {sortedRecords.map((record) => {
                     return(
@@ -28,6 +29,7 @@ const OtherUserRecords = (props) => {
                             <td>{record.name}</td>
                             <td>{record.release_year}</td>
                             <td>{record.genre}</td>
+                            <td>{record.country}</td>
                         </tr>
                     )
                 })}

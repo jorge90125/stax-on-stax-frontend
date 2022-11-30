@@ -38,6 +38,7 @@ const RecordContainer = (props) => {
                     <th>Album<button onClick={() => requestSort('name')} class='upDown'><FontAwesomeIcon icon="fa-solid fa-up-down" size="2x"/></button></th>
                     <th>Year<button onClick={() => requestSort('release_year')} class='upDown'><FontAwesomeIcon icon="fa-solid fa-up-down" size="2x"/></button></th>
                     <th>Genre<button onClick={() => requestSort('genre')} class='upDown'><FontAwesomeIcon icon="fa-solid fa-up-down" size="2x"/></button></th>
+                    <th>Country<button onClick={() => requestSort('country')} class='upDown'><FontAwesomeIcon icon="fa-solid fa-up-down" size="2x"/></button></th>
                 </tr>
                 {sortedRecords.map((record) => {
                     return(
@@ -47,6 +48,7 @@ const RecordContainer = (props) => {
                             <td>{record.name}</td>
                             <td>{record.release_year}</td>
                             <td>{record.genre}</td>
+                            <td>{record.country}</td>
                         </tr>
                     )
                 })}
